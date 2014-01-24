@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610161121) do
+ActiveRecord::Schema.define(:version => 20140124122747) do
+
+  create_table "approval_routing_schemes", :force => true do |t|
+    t.string   "scheme_name"
+    t.string   "scheme_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "approval_states", :force => true do |t|
+    t.string   "approval_state_name"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "approvals", :force => true do |t|
+    t.integer  "asset_id"
+    t.integer  "approval_routing_scheme_id"
+    t.integer  "approval_state_id"
+    t.text     "comments"
+    t.integer  "requester_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
   create_table "asset_allocation_histories", :force => true do |t|
     t.string   "assignee_id"
@@ -57,6 +80,14 @@ ActiveRecord::Schema.define(:version => 20130610161121) do
     t.date     "make_year"
     t.boolean  "bounded",          :default => false
     t.boolean  "asset_bounded",    :default => false
+  end
+
+  create_table "scheme_approvers", :force => true do |t|
+    t.integer  "approver_id"
+    t.string   "approver_type"
+    t.integer  "approval_routing_scheme_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
 end

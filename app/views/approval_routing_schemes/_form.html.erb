@@ -1,0 +1,25 @@
+<%= form_for(@approval_routing_scheme) do |f| %>
+  <% if @approval_routing_scheme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@approval_routing_scheme.errors.count, "error") %> prohibited this approval_routing_scheme from being saved:</h2>
+
+      <ul>
+      <% @approval_routing_scheme.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :scheme_name %><br />
+    <%= f.text_field :scheme_name %>
+  </div>
+  <div class="field">
+    <%= f.label :scheme_type %><br />
+    <%= f.text_field :scheme_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,5 +1,17 @@
 Ams::Application.routes.draw do
   
+  resources :approvals
+
+
+  resources :approval_states
+
+
+  resources :approval_routing_schemes
+
+
+  resources :scheme_approvers
+
+
   resources :asset_allocation_histories
 
 

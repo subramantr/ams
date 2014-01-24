@@ -1,0 +1,29 @@
+<%= form_for(@scheme_approver) do |f| %>
+  <% if @scheme_approver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scheme_approver.errors.count, "error") %> prohibited this scheme_approver from being saved:</h2>
+
+      <ul>
+      <% @scheme_approver.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :approver_id %><br />
+    <%= f.number_field :approver_id %>
+  </div>
+  <div class="field">
+    <%= f.label :approver_type %><br />
+    <%= f.text_field :approver_type %>
+  </div>
+  <div class="field">
+    <%= f.label :approval_routing_scheme_id %><br />
+    <%= f.number_field :approval_routing_scheme_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

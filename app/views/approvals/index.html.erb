@@ -1,0 +1,31 @@
+<h1>Listing approvals</h1>
+
+<table>
+  <tr>
+    <th>Asset</th>
+    <th>Approval routing scheme</th>
+    <th>Approval state</th>
+    <th>Comments</th>
+    <th>Requester</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @approvals.each do |approval| %>
+  <tr>
+    <td><%= approval.asset_id %></td>
+    <td><%= approval.approval_routing_scheme_id %></td>
+    <td><%= approval.approval_state_id %></td>
+    <td><%= approval.comments %></td>
+    <td><%= approval.requester_id %></td>
+    <td><%= link_to 'Show', approval %></td>
+    <td><%= link_to 'Edit', edit_approval_path(approval) %></td>
+    <td><%= link_to 'Destroy', approval, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Approval', new_approval_path %>

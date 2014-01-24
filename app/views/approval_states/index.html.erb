@@ -1,0 +1,23 @@
+<h1>Listing approval_states</h1>
+
+<table>
+  <tr>
+    <th>Approval state name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @approval_states.each do |approval_state| %>
+  <tr>
+    <td><%= approval_state.approval_state_name %></td>
+    <td><%= link_to 'Show', approval_state %></td>
+    <td><%= link_to 'Edit', edit_approval_state_path(approval_state) %></td>
+    <td><%= link_to 'Destroy', approval_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Approval state', new_approval_state_path %>

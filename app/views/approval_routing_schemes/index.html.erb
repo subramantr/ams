@@ -1,0 +1,25 @@
+<h1>Listing approval_routing_schemes</h1>
+
+<table>
+  <tr>
+    <th>Scheme name</th>
+    <th>Scheme type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @approval_routing_schemes.each do |approval_routing_scheme| %>
+  <tr>
+    <td><%= approval_routing_scheme.scheme_name %></td>
+    <td><%= approval_routing_scheme.scheme_type %></td>
+    <td><%= link_to 'Show', approval_routing_scheme %></td>
+    <td><%= link_to 'Edit', edit_approval_routing_scheme_path(approval_routing_scheme) %></td>
+    <td><%= link_to 'Destroy', approval_routing_scheme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Approval routing scheme', new_approval_routing_scheme_path %>

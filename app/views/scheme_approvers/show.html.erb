@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Approver:</b>
+  <%= @scheme_approver.approver_id %>
+</p>
+
+<p>
+  <b>Approver type:</b>
+  <%= @scheme_approver.approver_type %>
+</p>
+
+<p>
+  <b>Approval routing scheme:</b>
+  <%= @scheme_approver.approval_routing_scheme_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_scheme_approver_path(@scheme_approver) %> |
+<%= link_to 'Back', scheme_approvers_path %>

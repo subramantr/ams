@@ -1,0 +1,27 @@
+<h1>Listing scheme_approvers</h1>
+
+<table>
+  <tr>
+    <th>Approver</th>
+    <th>Approver type</th>
+    <th>Approval routing scheme</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @scheme_approvers.each do |scheme_approver| %>
+  <tr>
+    <td><%= scheme_approver.approver_id %></td>
+    <td><%= scheme_approver.approver_type %></td>
+    <td><%= scheme_approver.approval_routing_scheme_id %></td>
+    <td><%= link_to 'Show', scheme_approver %></td>
+    <td><%= link_to 'Edit', edit_scheme_approver_path(scheme_approver) %></td>
+    <td><%= link_to 'Destroy', scheme_approver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Scheme approver', new_scheme_approver_path %>

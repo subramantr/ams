@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Asset:</b>
+  <%= @approval.asset_id %>
+</p>
+
+<p>
+  <b>Approval routing scheme:</b>
+  <%= @approval.approval_routing_scheme_id %>
+</p>
+
+<p>
+  <b>Approval state:</b>
+  <%= @approval.approval_state_id %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%= @approval.comments %>
+</p>
+
+<p>
+  <b>Requester:</b>
+  <%= @approval.requester_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_approval_path(@approval) %> |
+<%= link_to 'Back', approvals_path %>
