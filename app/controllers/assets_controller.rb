@@ -13,26 +13,38 @@ class AssetsController < ApplicationController
     end
   end
 
-  def download
-    assets =  Asset.includes(:asset_type, :asset_assignment)
-    .where("assets.retired = 'f'")
- 
-    output = CSV.generate do |csv|
-      csv << Asset.column_names
-      assets.each do |asset|
-        csv << asset.attributes.values_at(*Asset.column_names)
-      end
-    end
+  # def download
+  #   assets =  Asset.includes(:asset_type, :asset_assignment)
+  #   .where("assets.retired = 'f'")
 
-    puts output
+  #   columns = [:id, :asset_id, :manufacturer, :asset_type_id, :description, :purchase_date, :release_date, :asset_image, :asset_documents, :serial_number, :model, :display_size, :operating_system, :created_at, :updated_at, :retired, :make_year, :bounded, :asset_bounded, :assignee_id, :assignee_name]
+
+  #   output = CSV.generate do |csv|
+  #     csv << columns
+  #     assets.each do |asset|
+  #       debugger
+  #       puts asset.asset_assignment
+  #       csv << asset.attributes.values_at(*Asset.column_names)
+  #     end
+  #   end
+
+  #   puts output
     
+  #   respond_to do |format|
+  #     format.csv { send_data output,
+  #       type: 'text/csv; header=present',
+  #       disposition: "attachment",
+  #       filename: "assets.csv" }
+  #   end
+  # end  
+
+  def download
+    @assets = Asset.includes(:asset_type, :asset_assignment)
+    .where("assets.retired = 'f'")
     respond_to do |format|
-      format.csv { send_data output,
-        type: 'text/csv; header=present',
-        disposition: "attachment",
-        filename: "assets.csv" }
+      format.xls
     end
-  end  
+  end
 
   # GET /assets/unassigned
   # GET /assets/unassigned.json

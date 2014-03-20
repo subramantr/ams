@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Asset_ID</Data></Cell>
+        <Cell><Data ss:Type="String">Manufacturer</Data></Cell>
+        <Cell><Data ss:Type="String">Asset_Type_ID</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Purchase_Date</Data></Cell>
+        <Cell><Data ss:Type="String">Release_Date</Data></Cell>
+        <Cell><Data ss:Type="String">Asset_Image</Data></Cell>
+        <Cell><Data ss:Type="String">Asset_Documents</Data></Cell>
+        <Cell><Data ss:Type="String">Serial_Number</Data></Cell>
+        <Cell><Data ss:Type="String">Model</Data></Cell>
+        <Cell><Data ss:Type="String">Display_Size</Data></Cell>
+        <Cell><Data ss:Type="String">Operating_System</Data></Cell>
+        <Cell><Data ss:Type="String">Created_At</Data></Cell>
+        <Cell><Data ss:Type="String">Updated_At</Data></Cell>
+        <Cell><Data ss:Type="String">Retired</Data></Cell>
+        <Cell><Data ss:Type="String">Make_Year</Data></Cell>
+        <Cell><Data ss:Type="String">Bounded</Data></Cell>
+        <Cell><Data ss:Type="String">Asset_Bounded</Data></Cell>
+        <Cell><Data ss:Type="String">Assignee_ID</Data></Cell>
+        <Cell><Data ss:Type="String">Assignee_Name</Data></Cell>
+        <Cell><Data ss:Type="String">Assigned_Date</Data></Cell>
+      </Row>
+    <% @assets.each do |asset| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= asset.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.manufacturer %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= asset.asset_type_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.description %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.purchase_date %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.release_date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset_image %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset_documents %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.serial_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.model %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.display_size %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.operating_system %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.created_at %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.updated_at %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= asset.retired %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.make_year %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= asset.bounded %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= asset.asset_bounded %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset_assignment.assignee_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= asset.asset_assignment.assignee_name %></Data></Cell>
+        <Cell><Data ss:Type="Date"><%= asset.asset_assignment.assigned_date %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
