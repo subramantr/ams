@@ -16,11 +16,14 @@ class AssetsController < ApplicationController
   def download
     assets =  Asset.includes(:asset_type, :asset_assignment)
     .where("assets.retired = 'f'")
- 
+
+    columns = [:id, :asset_id, :manufacturer, :asset_type_id, :description, :purchase_date, :release_date, :asset_image, :asset_documents, :serial_number, :model, :display_size, :operating_system, :created_at, :updated_at, :retired, :make_year, :bounded, :asset_bounded, :assignment_id, :assignee_id, :assignee_name, :assigned_date, :asset_mapping_id, :created_at, :updated_at]
+
     output = CSV.generate do |csv|
-      csv << Asset.column_names
+      csv << columns
       assets.each do |asset|
-        csv << asset.attributes.values_at(*Asset.column_names)
+        @consolidated_data = asset.attributes.values_at(*Asset.column_names) + asset.asset_assignment.attributes.values_at(*AssetAssignment.column_names)
+        csv << @consolidated_data
       end
     end
 
