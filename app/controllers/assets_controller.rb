@@ -13,38 +13,29 @@ class AssetsController < ApplicationController
     end
   end
 
-  # def download
-  #   assets =  Asset.includes(:asset_type, :asset_assignment)
-  #   .where("assets.retired = 'f'")
-
-  #   columns = [:id, :asset_id, :manufacturer, :asset_type_id, :description, :purchase_date, :release_date, :asset_image, :asset_documents, :serial_number, :model, :display_size, :operating_system, :created_at, :updated_at, :retired, :make_year, :bounded, :asset_bounded, :assignee_id, :assignee_name]
-
-  #   output = CSV.generate do |csv|
-  #     csv << columns
-  #     assets.each do |asset|
-  #       debugger
-  #       puts asset.asset_assignment
-  #       csv << asset.attributes.values_at(*Asset.column_names)
-  #     end
-  #   end
-
-  #   puts output
-    
-  #   respond_to do |format|
-  #     format.csv { send_data output,
-  #       type: 'text/csv; header=present',
-  #       disposition: "attachment",
-  #       filename: "assets.csv" }
-  #   end
-  # end  
-
   def download
-    @assets = Asset.includes(:asset_type, :asset_assignment)
+    assets =  Asset.includes(:asset_type, :asset_assignment)
     .where("assets.retired = 'f'")
-    respond_to do |format|
-      format.xls
+
+    columns = [:id, :asset_id, :manufacturer, :asset_type_id, :description, :purchase_date, :release_date, :asset_image, :asset_documents, :serial_number, :model, :display_size, :operating_system, :created_at, :updated_at, :retired, :make_year, :bounded, :asset_bounded, :assignment_id, :assignee_id, :assignee_name, :assigned_date, :asset_mapping_id, :created_at, :updated_at]
+
+    output = CSV.generate do |csv|
+      csv << columns
+      assets.each do |asset|
+        @consolidated_data = asset.attributes.values_at(*Asset.column_names) + asset.asset_assignment.attributes.values_at(*AssetAssignment.column_names)
+        csv << @consolidated_data
+      end
     end
-  end
+
+    puts output
+    
+    respond_to do |format|
+      format.csv { send_data output,
+        type: 'text/csv; header=present',
+        disposition: "attachment",
+        filename: "assets.csv" }
+    end
+  end  
 
   # GET /assets/unassigned
   # GET /assets/unassigned.json
