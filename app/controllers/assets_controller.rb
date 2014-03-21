@@ -22,7 +22,11 @@ class AssetsController < ApplicationController
     output = CSV.generate do |csv|
       csv << columns
       assets.each do |asset|
-        @consolidated_data = asset.attributes.values_at(*Asset.column_names) + asset.asset_assignment.attributes.values_at(*AssetAssignment.column_names)
+        if asset.asset_assignment.nil?
+          @consolidated_data = asset.attributes.values_at(*Asset.column_names)
+        else
+          @consolidated_data = asset.attributes.values_at(*Asset.column_names) + asset.asset_assignment.attributes.values_at(*AssetAssignment.column_names)
+        end
         csv << @consolidated_data
       end
     end
