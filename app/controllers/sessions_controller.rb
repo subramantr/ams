@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
           
         if ldap.bind
           puts "Authentication successful"
-          session[:user_id] = userLoginId                                                                                 
+          session[:user_id] = userLoginId
           session[:user_name] = userLoginId
           redirect_to home_url
         else

@@ -4,7 +4,8 @@
   <% end %>
   <%= form_tag "/login", method: :post do %>
   <fieldset>
-      <legend>Please Log In</legend>
+      <legend><i class="fa fa-plug"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Administrator Login</legend>
   <div class="control-group">
     <div class="controls">
       <%= text_field_tag :name, params[:name], placeholder: "User ID", class: "input-block-level" %>
