@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
     
     def getEmployeesInfoMap
-      empRestResp = RestClient.get("https://atlas:8443/atlas/rest/employees")
+      empRestResp = RestClient.get("http://atlas.mygazoo.com/atlas/rest/employees")
       jsonResp = JSON.parse empRestResp.body
       employeesMap = {}
       jsonResp.each do|f|
